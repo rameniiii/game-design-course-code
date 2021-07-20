@@ -16,15 +16,16 @@ class IslandTile:
     def enterTile(self):
         #Your code here
         if self.discovered:
-            print("You enter the "+self.name)
+            print("You enter the " + self.name)
         else:
             print(self.description)
             self.discovered = True
+    
             
     def leaveTile(self):
         #Your code here
-        print("After a long day of searching, you leave "+self.name+" and head back to camp")
-    
+        print("After a long day of searching, you leave "+ self.name +" and head back to camp")
+
     def search(self):
         #your code here
         encounter = None
@@ -45,3 +46,6 @@ class IslandTile:
                 else:
                     self.lootedItems.append(loot)
         return loot, encounter
+
+   
+     

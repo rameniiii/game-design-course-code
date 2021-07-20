@@ -1,6 +1,7 @@
 
 import numpy as np
 from islandTiles import stuffonisland as island
+from dangerousMonster import dangerousMonster as monster
 
 class GameController:
 
@@ -10,12 +11,17 @@ class GameController:
                 "beach": island.beach, 
                 "ravine": island.ravine, 
                 "camp": island.camp}
-
+    
     def __init__(self):
         self.alive = True
         self.days = 0
         self.inventory = []
+        self.where_you_are = ""
 
+
+    def print_your_inventory(self):
+        for item in self.inventory:
+            print(item)
 
     def play(self):
         while(self.alive):
@@ -27,6 +33,34 @@ class GameController:
             tile = self.island_map[input("Where would you like to search today? (temple, spring, beach, ravine, camp): ")]
             tile.enterTile()
             loot, encounter = tile.search()
+
+            m = monster()
+            m.print_warning()
+            tile.yourLocation()
+
+            if m.get_monsterLocation() == tile.name:
+                print("!!!!You encountered the monster!!!!")
+                if "Golden Monkey Statuette" in self.inventory:
+                    print("You have successfully avoided the monster!")
+                elif "a beat up Practice Dummy" in self.inventory:
+                    player_to_monster = input("Lucky day! You remember you have the practice dummy. Now, you can either 'attack,' 'run,' or 'dodge.' Please type in your choice.")
+                    if player_to_monster == 'attack':
+                        print("Damn son!")
+                        self.inventory.append("Monster Heart")
+                    elif player_to_monster == 'run':
+                        print("You are as dead as a five course meal!")
+                        self.alive = False
+                    else:
+                        print()
+                        
+                else:
+                    print()
+                    
+
+                        
+            else: 
+                print("No monster was found there...phew!")
+                print(m.get_monsterLocation())
 
             if encounter == "Crocodile":
                 self.alive = False
@@ -49,7 +83,15 @@ class GameController:
             tile.leaveTile()
                 
             #This is the start of our player input section. We'll modify this code to make the gameplay fun.
-            decision = input("Keep searching the Deserted Island? (Y/N) ")
+            view_inventory = input("Do you wish to look at your inventory? Type in 'yes' or 'no' ")
+           
+            if view_inventory == 'yes':
+                self.print_your_inventory()
+            else:
+                print("Alright. Moving on.")
+
+            decision = input("Keep searching the Deserted Island? (Y/N) Type 'quit' if you wish to exit the game.")
+            
 
             if decision == 'quit':
                 break

@@ -32,4 +32,4 @@ class Runner:
     def save_max_number_of_days(self,days_survived):
         if days_survived > self.maximum_number_of_days_survived:
             self.maximum_number_of_days_survived = days_survived
-        print("You ahve survived a maximum number of " + str(self.maximum_number_of_days_survived)+ " days")
+        print("You have survived a maximum number of " + str(self.maximum_number_of_days_survived)+ " days")
