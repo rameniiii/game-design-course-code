@@ -2,7 +2,7 @@ import pygame
 
 class Ship:
 
-    def __init__(self, WINDOWWIDTH, WINDOWHEIGHT):
+    def __init__(self, WINDOWWIDTH, WINDOWHEIGHT ):
         self.image = pygame.transform.scale(pygame.image.load("ArtAssets7/ship.png"),(80,80))
         self.rect = self.image.get_rect()
         
@@ -11,8 +11,10 @@ class Ship:
         self.topLimit = 10
         self.bottomLimit = WINDOWHEIGHT - 10
         self.moveSpeed = 5 # pixels per frame
-
         self.setStartPos()
+    
+    def setStartSpeed(self,speed):
+        self.moveSpeed = speed
 
     def move(self, left, right, up, down):
         if left and self.rect.left >= self.leftLimit:
