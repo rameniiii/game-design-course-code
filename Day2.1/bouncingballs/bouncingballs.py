@@ -27,7 +27,7 @@ centerOfBallY = 200
 
 while True:
     DISPLAYSURF.fill(WHITE)
-    pygame.draw.circle(DISPLAYSURF, BLUE, (centerOfBallX, centerOfBallY), 40,)
+    pygame.draw.circle(DISPLAYSURF, BLUE, (centerOfBallX, centerOfBallY), radius,)
 
     centerOfBallX += xVelocity 
     centerOfBallY += yVelocity
